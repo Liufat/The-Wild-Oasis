@@ -12,7 +12,7 @@ export async function getCabins() {
 }
 
 export async function createEditCabin(newCabin, id) {
-  console.log(newCabin, id);
+  // console.log(newCabin, id);
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
   // Name the image
   // https://scvafbafjneyrypgmtyw.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg
