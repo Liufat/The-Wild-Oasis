@@ -13,7 +13,7 @@ import { createEditCabin } from "../../services/apiCabins";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onClose }) {
   const {
     id: editId,
     max_capacity: maxCapacity,
@@ -53,9 +53,20 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     if (isEditSession)
       editCabin(
         { newCabinData: { ...formData }, id: editId },
-        { onSuccess: () => reset() }
+        {
+          onSuccess: () => {
+            reset();
+            onClose?.();
+          },
+        }
       );
-    else createCabin(formData, { onSuccess: () => reset() });
+    else
+      createCabin(formData, {
+        onSuccess: () => {
+          reset();
+          onClose?.();
+        },
+      });
   }
 
   function onError(errors) {
@@ -63,8 +74,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   }
 
   return (
-    // <Form onSubmit={handleSubmit(onSubmit, onError)}>
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onClose ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -148,7 +161,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={() => onClose?.()}>
           Cancel
         </Button>
         <Button disabled={isWorking}>
