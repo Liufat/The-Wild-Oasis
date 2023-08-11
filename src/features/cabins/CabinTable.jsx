@@ -25,19 +25,15 @@ function CabinTable() {
 
   // Sort
   const sortBy = searchParams.get("sortBy") || "name-asc";
-  const sortParams = sortBy.split("-");
-  const field =
-    sortParams.length > 2
-      ? sortBy.split("-")[0] +
-        "_" +
-        sortBy.split("-")[sortBy.split("-").length - 2]
-      : sortBy.split("-")[0];
-  const direction = sortParams[sortParams.length - 1];
+
+  const [field, direction] = sortBy.split("-")``;
+
   const modifier = direction === "asc" ? 1 : -1;
   const sortedCabins = filteredCabins.sort(
     (a, b) => (a[field] - b[field]) * modifier
   );
 
+  console.log(field, direction);
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
