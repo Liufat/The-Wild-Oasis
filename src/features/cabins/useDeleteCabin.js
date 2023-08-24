@@ -12,6 +12,7 @@ export function useDeleteCabin() {
       queryClient.invalidateQueries({
         queryKey: ["cabin"],
       });
+      
     },
     onError: (err) => toast.error(err.message),
   });
