@@ -1,4 +1,4 @@
-![image](https://imgur.com/o9pXLzG)
+![image](https://github.com/Liufat/The-Wild-Oasis/blob/a8913b75518a3a89af73e62c3ef016f6d3400fd3/%E9%A6%96%E9%A0%81.jpeg)
 
 # The-Wild-Oasis
 模擬訂房業者的後台管理系統
